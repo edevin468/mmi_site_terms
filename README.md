@@ -9,7 +9,7 @@ Step 1:
 
 Step 2:
   get_mmi.py
-  call call functions from MMI_functions.py to compute MMI from PGA and PGV, predicted MMI, and MMI residual
+  call functions from MMI_functions.py to compute MMI from PGA and PGV, predicted MMI, and MMI residual
   
 Step 3:
   data_filtering.py
