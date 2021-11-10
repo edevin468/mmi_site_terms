@@ -27,9 +27,9 @@ for i in range(len(stations)):
     
 count_list = np.array(count_list)
 df['Counts'] = count_list
-df_filtered = df[df['Counts']>5]
+df_filtered = df[df['Counts']>0]
 
-large = df_filtered['mmi']>2
+large = df_filtered['mmi']>0
 df1 = df_filtered[large]
 
 vs30= df1['VS30']

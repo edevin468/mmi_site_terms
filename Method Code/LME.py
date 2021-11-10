@@ -9,6 +9,8 @@ John Rekoske's code for LME crossed effects in statsmodels adapted for SoCal EQ 
 import os
 import pandas as pd
 import statsmodels.api as sm
+from progress_bar import progress_bar
+
 
 working_dir = '/Users/EmmaDevin/Work/USGS Summer 2020/USGS PLUM/Data'
 
@@ -26,6 +28,10 @@ event_term_dict = {}
 site_term_dict = {}
 epsilon_dict = {}
 
+l = len(imt_cols)
+bar = progress_bar(l)
+
+i = 0
 # Loop over each IMT (period) for FAS
 for col in imt_cols:
 
@@ -71,16 +77,20 @@ for col in imt_cols:
         mdf.resid.to_numpy(),
         index=[df.iloc[mdf.resid.index]['EarthquakeId'].to_numpy(),
                df.iloc[mdf.resid.index]['StationCode'].to_numpy()])
+    
+    bar.get_progress(i)
+    i +=1
+
 
 # Save the results
-pd.DataFrame.from_dict(bias_dict).to_csv(os.path.join(
-    OUTPUT_DIR, 'bias.csv'))
-pd.DataFrame.from_dict(event_term_dict).to_csv(os.path.join(
-    OUTPUT_DIR, 'event_terms.csv'), index_label='EarthquakeId')
-pd.DataFrame.from_dict(site_term_dict).to_csv(os.path.join(
-    OUTPUT_DIR, 'site_terms.csv'), index_label='StationCode')
-pd.DataFrame.from_dict(epsilon_dict).to_csv(os.path.join(
-    OUTPUT_DIR, 'epsilons_terms.csv'),
-    index_label=['EarthquakeId', 'StationCode'])
+# pd.DataFrame.from_dict(bias_dict).to_csv(os.path.join(
+#     OUTPUT_DIR, 'bias.csv'))
+# pd.DataFrame.from_dict(event_term_dict).to_csv(os.path.join(
+#     OUTPUT_DIR, 'event_terms.csv'), index_label='EarthquakeId')
+# pd.DataFrame.from_dict(site_term_dict).to_csv(os.path.join(
+#     OUTPUT_DIR, 'site_terms.csv'), index_label='StationCode')
+# pd.DataFrame.from_dict(epsilon_dict).to_csv(os.path.join(
+#     OUTPUT_DIR, 'epsilons_terms.csv'),
+#     index_label=['EarthquakeId', 'StationCode'])
 
 
