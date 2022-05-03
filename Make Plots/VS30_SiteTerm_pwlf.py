@@ -17,12 +17,12 @@ import pwlf
 ## READ AND MANIPULATE DATA
 
 # read in results from linear mixed analysis
-bias = pd.read_csv('/Users/emmadevin/Work/USGS Summer 2020/USGS PLUM/Data/LME_SoCal_filtered/bias.csv')
-siteTerms = pd.read_csv('/Users/emmadevin/Work/USGS Summer 2020/USGS PLUM/Data/LME_SoCal_filtered/site_terms.csv')
-eventTerms = pd.read_csv('/Users/emmadevin/Work/USGS Summer 2020/USGS PLUM/Data/LME_SoCal_filtered/event_terms.csv')
+bias = pd.read_csv('/Users/emmadevin/Work/USGS Summer 2020/USGS PLUM/Data_Old/LME_SoCal_filtered/bias.csv')
+siteTerms = pd.read_csv('/Users/emmadevin/Work/USGS Summer 2020/USGS PLUM/Data_Old/LME_SoCal_filtered/site_terms.csv')
+eventTerms = pd.read_csv('/Users/emmadevin/Work/USGS Summer 2020/USGS PLUM/Data_Old/LME_SoCal_filtered/event_terms.csv')
 
 # read in earthquake dataset
-dataset = pd.read_csv('/Users/emmadevin/Work/USGS Summer 2020/USGS PLUM/Data/SoCal_filtered.csv')
+dataset = pd.read_csv('/Users/emmadevin/Work/USGS Summer 2020/USGS PLUM/Data_Old/SoCal_filtered.csv')
 
 # define variables and create dataset for VS30 and siteterms 
 VS30 = dataset[['StationID','StationLatitude','StationLongitude','VS30']]
@@ -90,7 +90,7 @@ plt.axhline(y = 0, c ='k', lw = 1)
 # plt.xscale('log')
 plt.xlim(0,1400)
 plt.legend()
-plt.savefig('/Users/emmadevin/Work/USGS Summer 2020/USGS PLUM/FinalPlots/SiteTermvsVS30.pdf') 
+# plt.savefig('/Users/emmadevin/Work/USGS Summer 2020/USGS PLUM/FinalPlots/SiteTermvsVS30.pdf') 
 # print equations
 print('-------------------------------------------\n'
       'Least Squares Model for VS30 and Site Term\n'

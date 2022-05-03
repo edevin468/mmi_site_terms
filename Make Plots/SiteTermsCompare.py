@@ -12,8 +12,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy import stats
 
-dfm1 = pd.read_csv('/Users/emmadevin/Work/USGS Summer 2020/USGS PLUM/Data/Compiled_Instrumental_Site_Terms.csv')
-dfm2 = pd.read_csv('/Users/emmadevin/Work/USGS Summer 2020/USGS PLUM/Data/SiteResponse.csv')
+dfm1 = pd.read_csv('/Users/emmadevin/Work/USGS Summer 2020/USGS PLUM/Data_Old/Compiled_Instrumental_Site_Terms.csv')
+dfm2 = pd.read_csv('/Users/emmadevin/Work/USGS Summer 2020/USGS PLUM/Data_Old/SiteResponse.csv')
 
 
 siteMMI = dfm2[['StationCode','site']]
@@ -24,14 +24,25 @@ fs = 12
 x = np.linspace(-2,3, 20)
 y = x
 
-fig = plt.figure(figsize=(10, 5))
+XV = df['site']
+YV = df['Site_Term_PGV']
+RV = np.corrcoef(XV,YV)
+rV = RV[1][0]
 
+XA = df['site']
+YA = df['Site_Term_PGA']
+RA = np.corrcoef(XA,YA)
+rA = RA[1][0]
+
+fig = plt.figure(figsize=(10, 5))
+fig.patch.set_facecolor('w')
 plt.subplot(121)
 plt.plot(x,y,'--', c = 'b', label='Line with slope of 1')
 plt.scatter(df['site'],df['Site_Term_PGV'],s = 10,edgecolors = 'gray', facecolors ='none', label ='MMI vs PGV Site Term')
 # plt.title('Correspondence of MMI and Ground Motion Derived Site Terms', fontsize = 20)
 plt.xlabel('MMI derived site term', fontsize = fs)
-plt.ylabel('Ground Motion derived site term', fontsize = fs)
+plt.ylabel('ground motion derived site term', fontsize = fs)
+plt.text(1,-2,'r = ' +str("%.2f" % rV))
 plt.legend(fontsize = fs)
 
 plt.subplot(122)
@@ -39,8 +50,9 @@ plt.plot(x,y,'--', c = 'b', label='Line with slope of 1')
 plt.scatter(df['site'],df['Site_Term_PGA'],s = 10,edgecolors = 'gray', facecolors ='none', label ='MMI vs PGA Site Term')
 # plt.title('Correspondence of MMI and Ground Motion Derived Site Terms', fontsize = 20)
 plt.xlabel('MMI derived site term', fontsize = fs)
-plt.ylabel('Ground Motion derived site term', fontsize = fs)
-plt.legend( fontsize = fs)
+plt.ylabel('ground motion derived site term', fontsize = fs)
+plt.text(1,-2, 'r = ' +str("%.2f" % rA))
+plt.legend( fontsize = fs) 
 fig.tight_layout()
 plt.savefig('/Users/emmadevin/Work/USGS Summer 2020/USGS PLUM/FinalPlots/SiteTermsComparePG.pdf') 
 #plt.scatter(siteAll['site'],siteAll['Site_Term_PGV'],edgecolors = 'gray', facecolors ='none', label ='MMI vs PGV Site Term')

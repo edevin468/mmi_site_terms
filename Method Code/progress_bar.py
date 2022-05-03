@@ -8,6 +8,7 @@ progress bar
 @author: emmadevin
 """
 
+import sys
 
 class progress_bar:
     def __init__(self, l=0):
@@ -16,7 +17,7 @@ class progress_bar:
 
     
     def get_progress(self, i):
-        self.step = i
+        self.step = i+1
         prog = self.step/self.length
         
         stars = int(prog*50)
@@ -44,9 +45,10 @@ class progress_bar:
         bar = fill + space
     
             
-    
+        sys.stdout.write('\rProcessing: |' + bar + '| (' + f'{prog*100:.2f}' +'%)')
+        sys.stdout.flush()
         
-        print('Progress: |' + bar + '| (' + f'{prog*100:.2f}' +'%)', flush = True)
+        # print('Progress: |' + bar + '| (' + f'{prog*100:.2f}' +'%)', flush = True, end = '\r')
     
     
 

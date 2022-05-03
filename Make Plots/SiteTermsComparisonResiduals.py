@@ -13,8 +13,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy import stats
 
-df1 = pd.read_csv('/Users/emmadevin/Work/USGS Summer 2020/USGS PLUM/Data/Compiled_Instrumental_Site_Terms.csv')
-df2 = pd.read_csv('/Users/emmadevin/Work/USGS Summer 2020/USGS PLUM/Data/SiteResponse.csv')
+df1 = pd.read_csv('/Users/emmadevin/Work/USGS Summer 2020/USGS PLUM/Data_Old/Compiled_Instrumental_Site_Terms.csv')
+df2 = pd.read_csv('/Users/emmadevin/Work/USGS Summer 2020/USGS PLUM/Data_Old/SiteResponse.csv')
 siteMMI = df2[['StationCode','site']]
 
 df = df1.merge(siteMMI)
@@ -111,4 +111,4 @@ plt.xlabel('Period of PSA (s)')
 plt.ylabel('Correlation Coefficient')
 # plt.title('Correlation Coefficient R vs Period')
 # plt.legend()
-plt.savefig('/Users/emmadevin/Work/USGS Summer 2020/USGS PLUM/FinalPlots/RSiteTerms.pdf') 
+# plt.savefig('/Users/emmadevin/Work/USGS Summer 2020/USGS PLUM/FinalPlots/RSiteTerms.pdf') 
